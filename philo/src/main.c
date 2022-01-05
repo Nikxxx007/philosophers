@@ -22,6 +22,5 @@ int main(int argc, char **argv)
 	begin(philos);
 	cleaner(philos);
 	pthread_mutex_destroy(&g_vals->write_mux);
-//	while (1);
 	return (0);
 }

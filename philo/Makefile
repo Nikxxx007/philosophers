@@ -6,13 +6,16 @@ SRCS	= src/main.c \
                                   src/init/init.c \
                                   src/utils/ft_atoi.c \
                                   src/utils/ft_strncmp.c \
-                                  src/utils/cur_time.c src/cleaner/cleaner.c src/begin/begin.c src/live_circle/start_life.c src/utils/print_mes.c
+                                  src/utils/cur_time.c \
+                                  src/cleaner/cleaner.c \
+                                  src/begin/begin.c \
+                                  src/live_circle/start_life.c \
+                                  src/utils/print_mes.c
 
 OBJS	= $(SRCS:.c=.o)
 
 FLAGS	= -Wall -Wextra -Werror
 LIBC	= ar rc
-LIBR	= ranlib
 RM		= rm -f
 INCL	= ./
 

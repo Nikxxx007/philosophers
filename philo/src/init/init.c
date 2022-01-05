@@ -2,7 +2,7 @@
 
 void	init_mtxs(void)
 {
-	int i;
+	unsigned int i;
 
 	i = 0;
 	while (i < g_vals->philos_num)
@@ -16,7 +16,7 @@ void	init_mtxs(void)
 
 void	philos_values(t_philo **philos)
 {
-	int i;
+	unsigned int i;
 
 	i = 0;
 	while (i < g_vals->philos_num)
@@ -29,8 +29,8 @@ void	philos_values(t_philo **philos)
 		}
 		else
 		{
-			(*philos)[i].l_fork = &(g_vals->fork_mux[i]);
-			(*philos)[i].r_fork = &(g_vals->fork_mux[i + 1]);
+			(*philos)[i].r_fork = &(g_vals->fork_mux[i]);
+			(*philos)[i].l_fork = &(g_vals->fork_mux[i + 1]);
 		}
 		if (g_vals->food_c != -1)
 			(*philos)[i].has_eaten_c = 0;

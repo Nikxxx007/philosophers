@@ -3,10 +3,10 @@
 int 	is_dead(t_philo philo)
 {
 	usleep(10);
-	if ((cur_time() - g_vals->start - philo.eat_timing) > g_vals->die_t)
+	if ((cur_time() - g_vals->start - philo.eat_timing) > g_vals->die_t + 5)
 	{
 		pthread_mutex_lock(&g_vals->write_mux);
-		printf("%ld %d %s", cur_time() - g_vals->start, philo.num, "died");
+		printf("%ld %d %s", cur_time() - g_vals->start, philo.num, "died\n");
 		return (0);
 	}
 	return (1);
