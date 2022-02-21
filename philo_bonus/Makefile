@@ -14,7 +14,7 @@ SRCS	= src/main.c \
 
 OBJS	= $(SRCS:.c=.o)
 
-FLAGS	= -Wall -Wextra -Werror
+FLAGS	= -Wall -Wextra -Werror #-g -fsanitize=thread
 LIBC	= ar rc
 RM		= rm -f
 INCL	= ./
