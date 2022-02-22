@@ -1,11 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   begin.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rogaynel <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/02/22 14:16:24 by rogaynel          #+#    #+#             */
+/*   Updated: 2022/02/22 14:29:32 by rogaynel         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../includes/philo.h"
 
-int 	is_dead(t_philo philo, t_vals **vals)
+int	is_dead(t_philo philo, t_vals **vals)
 {
 	usleep(10);
 	if ((cur_time() - (*vals)->start - philo.eat_timing) > (*vals)->die_t + 5)
 	{
-//		(*vals)->is_dead = 1;
 		sem_wait((*vals)->write_sem);
 		printf("%ld %d %s", cur_time() - (*vals)->start, philo.num, "died\n");
 		return (0);
@@ -13,13 +24,14 @@ int 	is_dead(t_philo philo, t_vals **vals)
 	return (1);
 }
 
-int		is_alive(t_philo *philos, t_vals **vals)
+int	is_alive(t_philo *philos, t_vals **vals)
 {
 	unsigned int	i;
 	unsigned int	philos_has_eaten;
 	t_philo			philo;
 
-	while ((*vals)->threads != (*vals)->philos_num);
+	while ((*vals)->threads != (*vals)->philos_num)
+		;
 	while (1)
 	{
 		i = 0;
@@ -41,10 +53,10 @@ int		is_alive(t_philo *philos, t_vals **vals)
 	}
 }
 
-int		detach_threads(t_philo *philos, t_vals **vals)
+int	detach_threads(t_philo *philos, t_vals **vals)
 {
 	unsigned int	i;
-	int 			res;
+	int				res;
 
 	i = 0;
 	while (i < (*vals)->philos_num)
@@ -60,10 +72,10 @@ int		detach_threads(t_philo *philos, t_vals **vals)
 	return (1);
 }
 
-int		begin(t_philo *philos, t_vals **vals)
+int	begin(t_philo *philos, t_vals **vals)
 {
 	unsigned int	i;
-	int 			res;
+	int				res;
 
 	i = 0;
 	sem_unlink("write_sem");
@@ -71,7 +83,8 @@ int		begin(t_philo *philos, t_vals **vals)
 	while (i < (*vals)->philos_num)
 	{
 		philos[i].vals = *vals;
-		res = pthread_create(&philos[i].philo, NULL, start_life, (void *)(&(philos[i])));
+		res = pthread_create(&philos[i].philo, NULL, \
+				start_life, (void *)(&(philos[i])));
 		if (res)
 		{
 			printf("Thread error\n");

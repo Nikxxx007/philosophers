@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   begin.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rogaynel <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/02/22 14:56:52 by rogaynel          #+#    #+#             */
+/*   Updated: 2022/02/22 14:56:54 by rogaynel         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../includes/philo.h"
 
-int 	is_dead(t_philo philo, t_vals **vals)
+int	is_dead(t_philo philo, t_vals **vals)
 {
 	usleep(10);
 	if ((cur_time() - (*vals)->start - philo.eat_timing) > (*vals)->die_t + 5)
@@ -12,13 +24,14 @@ int 	is_dead(t_philo philo, t_vals **vals)
 	return (1);
 }
 
-int		is_alive(t_philo *philos, t_vals **vals)
+int	is_alive(t_philo *philos, t_vals **vals)
 {
 	unsigned int	i;
 	unsigned int	philos_has_eaten;
-	t_philo 		philo;
+	t_philo			philo;
 
-	while ((*vals)->threads != (*vals)->philos_num);
+	while ((*vals)->threads != (*vals)->philos_num)
+		;
 	while (1)
 	{
 		i = 0;
@@ -40,10 +53,10 @@ int		is_alive(t_philo *philos, t_vals **vals)
 	}
 }
 
-int		detach_threads(t_philo *philos, t_vals **vals)
+int	detach_threads(t_philo *philos, t_vals **vals)
 {
 	unsigned int	i;
-	int 			res;
+	int				res;
 
 	i = 0;
 	while (i < (*vals)->philos_num)
@@ -62,14 +75,15 @@ int		detach_threads(t_philo *philos, t_vals **vals)
 void	begin(t_philo *philos, t_vals **vals)
 {
 	unsigned int	i;
-	int 			res;
+	int				res;
 
 	i = 0;
 	pthread_mutex_init(&(*vals)->write_mux, NULL);
 	while (i < (*vals)->philos_num)
 	{
-		philos[i].vals = *vals;//TODO maybe should be (vals)
-		res = pthread_create(&philos[i].philo, NULL, start_life, (void *)(&(philos[i])));
+		philos[i].vals = *vals;
+		res = pthread_create(&philos[i].philo, NULL, \
+				start_life, (void *)(&(philos[i])));
 		if (res)
 		{
 			printf("Thread error\n");
@@ -81,7 +95,6 @@ void	begin(t_philo *philos, t_vals **vals)
 	}
 	if (!(detach_threads(philos, vals)))
 		return ;
-//	(*vals)->start = cur_time();
 	if (!(is_alive(philos, vals)))
 		return ;
 }

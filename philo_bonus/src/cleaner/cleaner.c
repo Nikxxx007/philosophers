@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cleaner.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rogaynel <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/02/22 14:10:55 by rogaynel          #+#    #+#             */
+/*   Updated: 2022/02/22 14:29:08 by rogaynel         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../includes/philo.h"
 
 void	clean_forks(t_vals **vals)
@@ -21,7 +33,7 @@ void	clean_forks(t_vals **vals)
 				sem_post((*vals)->fork_sem);
 				i++;
 			}
-			sem_unlink("forks_sem");//TODO in init the same name
+			sem_unlink("forks_sem");
 			sem_close((*vals)->fork_sem);
 		}
 	}

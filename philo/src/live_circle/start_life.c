@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   start_life.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rogaynel <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/02/22 14:51:46 by rogaynel          #+#    #+#             */
+/*   Updated: 2022/02/22 14:51:48 by rogaynel         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../includes/philo.h"
 
 void	start_eating(t_philo *philo)
@@ -22,12 +34,11 @@ void	start_sleeping(t_philo *philo)
 
 void	*start_life(void *p_philo)
 {
-	t_philo *philo;
+	t_philo	*philo;
 	t_vals	*vals;
 
 	philo = (t_philo *)p_philo;
 	vals = philo->vals;
-//	while (philo->vals->threads != philo->vals->philos_num);
 	philo->eat_timing = cur_time() - vals->start;
 	if (philo->num % 2 == 0)
 		usleep(vals->eat_t);

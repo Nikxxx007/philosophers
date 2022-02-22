@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   init.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rogaynel <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/02/22 14:53:31 by rogaynel          #+#    #+#             */
+/*   Updated: 2022/02/22 14:53:37 by rogaynel         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../includes/philo.h"
 
 void	init_mtxs(t_vals **vals)
 {
-	unsigned int i;
+	unsigned int	i;
 
 	i = 0;
 	while (i < (*vals)->philos_num)
@@ -16,7 +28,7 @@ void	init_mtxs(t_vals **vals)
 
 void	philos_values(t_philo **philos, t_vals **vals)
 {
-	unsigned int i;
+	unsigned int	i;
 
 	i = 0;
 	while (i < (*vals)->philos_num)
@@ -41,13 +53,13 @@ void	philos_values(t_philo **philos, t_vals **vals)
 
 t_philo	*init_philos(t_vals **vals)
 {
-	t_philo *philos;
+	t_philo	*philos;
 
-	//malloc forks and philos structs
 	if ((*vals)->philos_num == 1)
 		(*vals)->fork_mux = malloc(sizeof(pthread_mutex_t) * 2);
 	else
-		(*vals)->fork_mux = malloc(sizeof(pthread_mutex_t) * (*vals)->philos_num);
+		(*vals)->fork_mux = malloc(sizeof(pthread_mutex_t) \
+				* (*vals)->philos_num);
 	philos = malloc(sizeof(t_philo) * (*vals)->philos_num);
 	if (!(*vals)->fork_mux || !philos)
 		return (NULL);
